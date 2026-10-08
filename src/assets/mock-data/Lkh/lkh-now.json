@@ -1,0 +1,128 @@
+[
+  {
+    "part_number": "51474-BZ080-01",
+    "job_number": "",
+    "lot_size": 20,
+    "qty_kbn": 3,
+
+    "plan_shift_1": 120,
+    "qty_shift_1": 100,
+    "ng_shift_1": 8,
+
+    "plan_shift_2": 0,
+    "qty_shift_2": 0,
+    "ng_shift_2": 0
+  },
+  {
+    "part_number": "51501-BZ070-00",
+    "job_number": "AA-0195",
+    "lot_size": 0,
+    "qty_kbn": 0,
+
+    "plan_shift_1": 0,
+    "qty_shift_1": 50,
+    "ng_shift_1": 0,
+
+    "plan_shift_2": 0,
+    "qty_shift_2": 0,
+    "ng_shift_2": 0
+  },
+  {
+    "part_number": "51963-BZ160-00",
+    "job_number": "AE-0137",
+    "lot_size": 0,
+    "qty_kbn": 0,
+
+    "plan_shift_1": 0,
+    "qty_shift_1": 240,
+    "ng_shift_1": 0,
+
+    "plan_shift_2": 0,
+    "qty_shift_2": 0,
+    "ng_shift_2": 0
+  },
+  {
+    "part_number": "51964-BZ060-00",
+    "job_number": "AE-0138",
+    "lot_size": 0,
+    "qty_kbn": 0,
+
+    "plan_shift_1": 0,
+    "qty_shift_1": 600,
+    "ng_shift_1": 0,
+
+    "plan_shift_2": 0,
+    "qty_shift_2": 0,
+    "ng_shift_2": 0
+  },
+  {
+    "part_number": "52142-BZ110-00",
+    "job_number": "",
+    "lot_size": 0,
+    "qty_kbn": 0,
+
+    "plan_shift_1": 0,
+    "qty_shift_1": -300,
+    "ng_shift_1": 0,
+
+    "plan_shift_2": 0,
+    "qty_shift_2": 0,
+    "ng_shift_2": 0
+  },
+  {
+    "part_number": "53705-BZ090-01",
+    "job_number": "RC-1397",
+    "lot_size": 0,
+    "qty_kbn": 0,
+
+    "plan_shift_1": 0,
+    "qty_shift_1": 8,
+    "ng_shift_1": 0,
+
+    "plan_shift_2": 0,
+    "qty_shift_2": 0,
+    "ng_shift_2": 0
+  },
+  {
+    "part_number": "53706-BZ070-01",
+    "job_number": "RC-1398",
+    "lot_size": 0,
+    "qty_kbn": 0,
+
+    "plan_shift_1": 0,
+    "qty_shift_1": 16,
+    "ng_shift_1": 0,
+
+    "plan_shift_2": 0,
+    "qty_shift_2": 0,
+    "ng_shift_2": 0
+  },
+  {
+    "part_number": "53707-BZ070-00",
+    "job_number": "NT-2606",
+    "lot_size": 0,
+    "qty_kbn": 0,
+
+    "plan_shift_1": 0,
+    "qty_shift_1": 24,
+    "ng_shift_1": 0,
+
+    "plan_shift_2": 0,
+    "qty_shift_2": 0,
+    "ng_shift_2": 0
+  },
+  {
+    "part_number": "53724-BZ050-00",
+    "job_number": "53724-BZ050",
+    "lot_size": 0,
+    "qty_kbn": 0,
+
+    "plan_shift_1": 0,
+    "qty_shift_1": 320,
+    "ng_shift_1": 0,
+
+    "plan_shift_2": 0,
+    "qty_shift_2": 0,
+    "ng_shift_2": 0
+  }
+]

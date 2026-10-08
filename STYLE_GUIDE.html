@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIMS Style Guide</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  --c-bg: #f8fafc;
+  --c-surface: #ffffff;
+  --c-border: #e2e8f0;
+  --c-border-strong: #cbd5e1;
+  --c-text: #0f172a;
+  --c-text-2: #475569;
+  --c-text-3: #94a3b8;
+  --c-primary: #3b82f6;
+  --c-primary-light: #eff6ff;
+  --c-success: #22c55e;
+  --c-danger: #ef4444;
+  --c-warning: #f59e0b;
+  --c-info: #6366f1;
+  --c-gray: #94a3b8;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+body { padding: 0; min-height: 100vh; background: var(--c-bg); }
+
+/* ── LAYOUT ── */
+.root { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+
+.header {
+  padding: 20px 0 18px;
+  border-bottom: 1px solid var(--c-border);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.header-left {}
+.header-title { font-size: 22px; font-weight: 700; letter-spacing: -.3px; }
+.header-sub { font-size: 12.5px; color: var(--c-text-2); margin-top: 3px; }
+.header-badge {
+  font-size: 11px; font-weight: 600;
+  background: #dbeafe; color: #1e40af;
+  border-radius: var(--radius-full); padding: 4px 12px;
+  border: 1px solid #bfdbfe; white-space: nowrap; align-self: center;
+}
+
+/* ── TABS ── */
+.tabs {
+  display: flex; gap: 2px; overflow-x: auto;
+  background: #f1f5f9; border-radius: 10px;
+  padding: 4px; margin-bottom: 22px;
+  scrollbar-width: none; position: sticky; top: 10px; z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex-shrink: 0; padding: 7px 14px;
+  border-radius: 7px; border: none;
+  background: transparent; cursor: pointer;
+  font-size: 12.5px; font-weight: 500;
+  color: var(--c-text-2); font-family: inherit;
+  transition: all .15s; white-space: nowrap;
+}
+.tab.active { background: #fff; color: var(--c-primary); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+.tab:hover:not(.active) { color: var(--c-text); background: rgba(255,255,255,.5); }
+
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── SHARED ── */
+.sec-title { font-size: 15px; font-weight: 700; color: var(--c-text); margin-bottom: 18px; }
+.sub { margin-bottom: 24px; }
+.sub-label {
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--c-text-3); margin-bottom: 10px;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.card-head {
+  padding: 12px 16px; border-bottom: 1px solid var(--c-border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.card-head-title { font-size: 13px; font-weight: 600; }
+.card-body { padding: 16px; }
+.card-body-lg { padding: 20px; }
+
+/* ── RULE BOX ── */
+.rule { background: #f8fafc; border: 1px solid var(--c-border); border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 10px; }
+.rule.accent { border-left: 3px solid var(--c-primary); background: var(--c-primary-light); }
+.rule.warn { border-left: 3px solid #f59e0b; background: #fffbeb; }
+
+/* ── CODE CHIP ── */
+.chip {
+  display: inline-block; background: #f1f5f9;
+  border: 1px solid var(--c-border-strong);
+  border-radius: 4px; padding: 1.5px 6px;
+  font-family: 'Courier New', monospace; font-size: 11.5px;
+  color: #7c3aed; margin: 2px;
+}
+.chip.blue { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+.chip.green { background: #f0fdf4; border-color: #bbf7d0; color: #166534; }
+
+/* ── COPY BTN ── */
+.copy-wrap { position: relative; }
+.code-block {
+  background: #0f172a; color: #e2e8f0; border-radius: var(--radius-md);
+  padding: 14px 16px; font-family: 'Courier New', monospace; font-size: 12px;
+  line-height: 1.7; overflow-x: auto; white-space: pre;
+}
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  color: #94a3b8; border-radius: 5px; padding: 3px 10px;
+  font-size: 11px; cursor: pointer; font-family: inherit;
+  transition: all .15s;
+}
+.copy-btn:hover { background: rgba(255,255,255,.2); color: white; }
+.copy-btn.copied { color: #4ade80; border-color: #4ade80; }
+
+/* ── GRID ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 600px) {
+  .g2, .g3, .g4 { grid-template-columns: 1fr; }
+  .sem-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── BADGES ── */
+.badge { display: inline-flex; align-items: center; padding: 2px 10px; border-radius: 9999px; font-size: 11.5px; font-weight: 600; }
+.b-green  { background: #dcfce7; color: #166534; }
+.b-red    { background: #fee2e2; color: #991b1b; }
+.b-yellow { background: #fef9c3; color: #854d0e; }
+.b-blue   { background: #dbeafe; color: #1e40af; }
+.b-indigo { background: #e0e7ff; color: #3730a3; }
+.b-gray   { background: #f1f5f9; color: #475569; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: none; cursor: pointer; font-family: inherit;
+  font-weight: 500; border-radius: 9999px; transition: filter .15s;
+}
+.btn:hover { filter: brightness(.9); }
+.btn-blue   { background: #3b82f6; color: #fff; }
+.btn-green  { background: #22c55e; color: #fff; }
+.btn-red    { background: #ef4444; color: #fff; }
+.btn-orange { background: #f97316; color: #fff; }
+.btn-ghost  { background: #fff; color: #374151; border: 1px solid #d1d5db; }
+.btn-lg { padding: 8px 20px; font-size: 14px; }
+.btn-md { padding: 8px 16px; font-size: 13px; }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-xs { padding: 4px 10px; font-size: 11.5px; }
+
+/* ── INPUTS ── */
+.inp {
+  width: 100%; background: #f8fafc; border: 1px solid #cbd5e1;
+  border-radius: var(--radius-md); padding: 9px 13px;
+  font-size: 13px; font-family: inherit; color: var(--c-text); outline: none;
+  transition: all .15s;
+}
+.inp:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,.15); background: #fff; }
+.form-label { font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 5px; display: block; }
+
+/* ── TABLE DEMO ── */
+.tbl-wrap { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--c-border); }
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tbl thead tr { background: #f8fafc; }
+.tbl thead th {
+  padding: 12px 24px; text-align: left;
+  font-size: 11.5px; font-weight: 600; color: #374151;
+  text-transform: uppercase; letter-spacing: .05em;
+  border-bottom: 1px solid var(--c-border);
+  white-space: nowrap; cursor: pointer; user-select: none;
+}
+.tbl thead th:hover { background: #f1f5f9; }
+.tbl thead th.sort-asc  .sort-icon::after { content: ' ↑'; color: #3b82f6; }
+.tbl thead th.sort-desc .sort-icon::after { content: ' ↓'; color: #3b82f6; }
+.tbl thead th .sort-icon { color: #94a3b8; font-size: 13px; }
+.tbl thead th.no-sort { cursor: default; }
+.tbl thead th.no-sort:hover { background: #f8fafc; }
+.tbl tbody tr { border-bottom: 1px solid var(--c-border); }
+.tbl tbody tr:nth-child(odd)  { background: #fff; }
+.tbl tbody tr:nth-child(even) { background: #f8fafc; }
+.tbl tbody tr:hover { background: #eff6ff; }
+.tbl tbody td { padding: 16px 24px; color: #374151; }
+.tbl tbody tr:last-child { border-bottom: none; }
+
+/* ── SEARCH ── */
+.search-wrap { position: relative; }
+.search-ico {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  color: #94a3b8; pointer-events: none;
+}
+.search-inp {
+  padding: 7px 12px 7px 32px; font-size: 12.5px;
+  border: 1px solid #cbd5e1; border-radius: var(--radius-md);
+  background: #f8fafc; font-family: inherit; color: var(--c-text);
+  outline: none; width: 200px; transition: all .15s;
+}
+.search-inp:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,.15); background: #fff; }
+
+/* ── PAGINATION ── */
+.pag {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 10px;
+  padding: 12px 28px; border-top: 1px solid var(--c-border);
+  background: var(--c-surface); font-size: 13px;
+}
+.pag-info { color: #475569; font-size: 12.5px; }
+.pag-btns { display: flex; gap: 3px; }
+.pag-btn {
+  min-width: 30px; height: 30px; padding: 0 8px;
+  background: #f1f5f9; border: none; border-radius: var(--radius-sm);
+  font-size: 12.5px; cursor: pointer; font-family: inherit;
+  color: var(--c-text); display: flex; align-items: center; justify-content: center;
+  transition: background .12s;
+}
+.pag-btn:hover:not(.active):not(:disabled) { background: #e2e8f0; }
+.pag-btn.active  { background: #3b82f6; color: #fff; font-weight: 600; }
+.pag-btn:disabled { opacity: .4; cursor: not-allowed; }
+.pag-rows { display: flex; align-items: center; gap: 7px; color: #475569; font-size: 12.5px; }
+.pag-rows select {
+  border: 1px solid #cbd5e1; border-radius: var(--radius-sm);
+  padding: 4px 8px; font-size: 12.5px; background: #fff;
+  font-family: inherit; outline: none; cursor: pointer;
+}
+
+/* ── SPACING VIS ── */
+.sp-row { display: flex; align-items: center; gap: 12px; margin-bottom: 7px; }
+.sp-box { background: #dbeafe; border: 1px dashed #93c5fd; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #1d4ed8; font-weight: 600; }
+.sp-name { font-family: monospace; font-size: 12px; color: #7c3aed; width: 110px; }
+.sp-val  { font-size: 12px; color: var(--c-text-3); }
+
+/* ── RADIUS VIS ── */
+.rad-grid { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end; }
+.rad-item { text-align: center; }
+.rad-box  { width: 52px; height: 52px; background: #dbeafe; border: 2px solid #3b82f6; margin: 0 auto 6px; }
+.rad-lbl  { font-size: 11px; }
+.rad-sub  { font-size: 10px; color: var(--c-text-3); margin-top: 2px; }
+
+/* ── COLOR SEMANTIC ── */
+.sem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.sem-card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--c-border); }
+.sem-stripe { height: 6px; }
+.sem-body  { padding: 10px 12px; }
+.sem-name  { font-size: 12.5px; font-weight: 600; margin-bottom: 2px; }
+.sem-desc  { font-size: 11px; color: var(--c-text-2); }
+.sem-ex    { margin-top: 7px; }
+
+/* ── TYPO ── */
+.typo-row { padding: 10px 0; border-bottom: 1px solid var(--c-border); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.typo-row:last-child { border-bottom: none; }
+.typo-chips { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-end; }
+
+/* ── DO / DONT ── */
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.do-box, .dont-box { border-radius: var(--radius-md); padding: 12px 14px; font-size: 12.5px; }
+.do-box   { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+.dont-box { background: #fff1f2; border: 1px solid #fecdd3; color: #9f1239; }
+.do-box .icon, .dont-box .icon { font-size: 15px; margin-bottom: 5px; }
+
+/* ── ANNOT ── */
+.annot {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-md);
+  padding: 9px 12px; font-size: 12px; color: #92400e; margin-top: 10px;
+}
+
+/* ── FORM DEMO ── */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+
+/* ── EMPTY ── */
+.tbl-empty { padding: 28px; text-align: center; color: var(--c-text-3); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="root">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-title">MIMS Style Guide</div>
+      <div class="header-sub">Standar UI/UX · Vue3 + Tailwind CSS · Wajib diikuti semua programmer</div>
+    </div>
+    <span class="header-badge">v1.0 · 2026-06-22</span>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" onclick="go('typo',this)">Typography</button>
+    <button class="tab" onclick="go('color',this)">Warna</button>
+    <button class="tab" onclick="go('space',this)">Spacing</button>
+    <button class="tab" onclick="go('table',this)">Table ✦</button>
+    <button class="tab" onclick="go('pag',this)">Pagination</button>
+    <button class="tab" onclick="go('btn',this)">Button</button>
+    <button class="tab" onclick="go('form',this)">Form</button>
+    <button class="tab" onclick="go('card',this)">Card & Badge</button>
+  </div>
+
+  <!-- ══════════════ TYPOGRAPHY ══════════════ -->
+  <div class="section active" id="s-typo">
+    <div class="sec-title">Typography</div>
+
+    <div class="sub">
+      <div class="sub-label">Font Family</div>
+      <div class="rule accent">
+        Font default project ini adalah <strong>Poppins</strong> — sudah dikonfigurasi di
+        <code style="font-size:12px;color:#7c3aed">tailwind.config.js</code>.
+        Tidak perlu tambah class. Jangan override tanpa izin tim.
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Skala Teks</div>
+      <div class="card">
+        <div class="card-body-lg">
+          <div class="typo-row">
+            <div style="font-size:24px;font-weight:600">Page Title</div>
+            <div class="typo-chips">
+              <span class="chip">text-2xl</span><span class="chip">font-semibold</span>
+              <span style="font-size:11px;color:#94a3b8">24px / 600</span>
+            </div>
+          </div>
+          <div class="typo-row">
+            <div style="font-size:18px;font-weight:600">Section / Card Title</div>
+            <div class="typo-chips">
+              <span class="chip">text-lg</span><span class="chip">font-semibold</span>
+              <span style="font-size:11px;color:#94a3b8">18px / 600</span>
+            </div>
+          </div>
+          <div class="typo-row">
+            <div style="font-size:15px;font-weight:600">Subsection Header</div>
+            <div class="typo-chips">
+              <span class="chip">text-[15px]</span><span class="chip">font-semibold</span>
+              <span style="font-size:11px;color:#94a3b8">15px / 600</span>
+            </div>
+          </div>
+          <div class="typo-row">
+            <div style="font-size:14px">Body text — konten utama halaman</div>
+            <div class="typo-chips">
+              <span class="chip">text-sm</span>
+              <span style="font-size:11px;color:#94a3b8">14px / 400 (default)</span>
+            </div>
+          </div>
+          <div class="typo-row">
+            <div style="font-size:13px;color:#64748b">Teks tabel, label, info sekunder</div>
+            <div class="typo-chips">
+              <span class="chip">text-sm</span><span class="chip">text-gray-500</span>
+              <span style="font-size:11px;color:#94a3b8">13–14px</span>
+            </div>
+          </div>
+          <div class="typo-row" style="border:none;padding-bottom:0">
+            <div style="font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#374151">THEAD / KOLOM LABEL</div>
+            <div class="typo-chips">
+              <span class="chip">text-xs</span><span class="chip">font-semibold</span>
+              <span class="chip">uppercase</span><span class="chip">tracking-wide</span>
+              <span style="font-size:11px;color:#94a3b8">12px / 600</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="icon">✅</div>
+        Gunakan <code>text-sm</code> sebagai default body text dalam form dan tabel
+      </div>
+      <div class="dont-box">
+        <div class="icon">❌</div>
+        Jangan pakai <code>text-base</code> (16px) untuk teks tabel atau form — terlalu besar
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ WARNA ══════════════ -->
+  <div class="section" id="s-color">
+    <div class="sec-title">Warna &amp; Semantik</div>
+
+    <div class="sub">
+      <div class="sub-label">Panduan Semantik — Warna Harus Bermakna</div>
+      <div class="sem-grid">
+        <div class="sem-card">
+          <div class="sem-stripe" style="background:#3b82f6"></div>
+          <div class="sem-body">
+            <div class="sem-name">🔵 Primary / Aksi Utama</div>
+            <div class="sem-desc">Tombol utama, pagination aktif, link navigasi</div>
+            <div class="sem-ex"><span class="badge b-blue">Biru</span></div>
+          </div>
+        </div>
+        <div class="sem-card">
+          <div class="sem-stripe" style="background:#22c55e"></div>
+          <div class="sem-body">
+            <div class="sem-name">🟢 Success / OK / Selesai</div>
+            <div class="sem-desc">Simpan, konfirmasi, badge "Active", sukses</div>
+            <div class="sem-ex"><span class="badge b-green">Hijau</span></div>
+          </div>
+        </div>
+        <div class="sem-card">
+          <div class="sem-stripe" style="background:#ef4444"></div>
+          <div class="sem-body">
+            <div class="sem-name">🔴 Danger / Error / Hapus</div>
+            <div class="sem-desc">Hapus, gagal, badge "Error", batalkan</div>
+            <div class="sem-ex"><span class="badge b-red">Merah</span></div>
+          </div>
+        </div>
+        <div class="sem-card">
+          <div class="sem-stripe" style="background:#f59e0b"></div>
+          <div class="sem-body">
+            <div class="sem-name">🟡 Warning / Perhatian</div>
+            <div class="sem-desc">Pending, belum selesai, perlu perhatian</div>
+            <div class="sem-ex"><span class="badge b-yellow">Kuning / Oranye</span></div>
+          </div>
+        </div>
+        <div class="sem-card">
+          <div class="sem-stripe" style="background:#6366f1"></div>
+          <div class="sem-body">
+            <div class="sem-name">🟣 Info / Netral Positif</div>
+            <div class="sem-desc">Informasi tambahan, notifikasi non-kritis</div>
+            <div class="sem-ex"><span class="badge b-indigo">Indigo / Biru Muda</span></div>
+          </div>
+        </div>
+        <div class="sem-card">
+          <div class="sem-stripe" style="background:#94a3b8"></div>
+          <div class="sem-body">
+            <div class="sem-name">⚫ Neutral / Tidak Aktif</div>
+            <div class="sem-desc">Draft, disabled, status default/tidak diketahui</div>
+            <div class="sem-ex"><span class="badge b-gray">Abu-abu</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Teks &amp; Background Struktural</div>
+      <div class="card">
+        <div class="card-body">
+          <table style="width:100%;font-size:12.5px;border-collapse:collapse;">
+            <thead>
+              <tr style="border-bottom:1px solid #e2e8f0">
+                <th style="text-align:left;padding:6px 8px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8">Elemen</th>
+                <th style="text-align:left;padding:6px 8px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8">Panduan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px">Teks utama</td><td style="padding:8px;color:#475569">Gelap — <span class="chip">gray-900</span> atau <span class="chip">gray-800</span></td></tr>
+              <tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px">Teks sekunder</td><td style="padding:8px;color:#475569">Sedang — <span class="chip">gray-500</span> atau <span class="chip">gray-600</span></td></tr>
+              <tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px">Teks disabled / hint</td><td style="padding:8px;color:#475569">Muda — <span class="chip">gray-400</span></td></tr>
+              <tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px">Background halaman</td><td style="padding:8px;color:#475569"><span class="chip">gray-50</span> — terang, bukan putih murni</td></tr>
+              <tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px">Background card</td><td style="padding:8px;color:#475569"><span class="chip">white</span></td></tr>
+              <tr><td style="padding:8px">Badge background</td><td style="padding:8px;color:#475569">Pastel shade <strong>100</strong> · teks shade <strong>700–800</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="icon">✅</div>
+        Hover button: naik 1 shade saja<br>
+        <code>bg-green-500 hover:bg-green-600</code>
+      </div>
+      <div class="dont-box">
+        <div class="icon">❌</div>
+        Jangan loncat shade jauh<br>
+        <code>hover:bg-green-800</code> — terlalu gelap
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SPACING ══════════════ -->
+  <div class="section" id="s-space">
+    <div class="sec-title">Spacing &amp; Border Radius</div>
+
+    <div class="g2" style="gap:16px">
+      <div class="sub">
+        <div class="sub-label">Skala Spacing</div>
+        <div class="card"><div class="card-body">
+          <div class="sp-row"><div class="sp-box" style="width:4px;height:20px"></div><span class="sp-name">p-1 / gap-1</span><span class="sp-val">4px · micro</span></div>
+          <div class="sp-row"><div class="sp-box" style="width:8px;height:20px"></div><span class="sp-name">p-2 / gap-2</span><span class="sp-val">8px · tight</span></div>
+          <div class="sp-row"><div class="sp-box" style="width:12px;height:20px"></div><span class="sp-name">p-3 / gap-3</span><span class="sp-val">12px · compact</span></div>
+          <div class="sp-row"><div class="sp-box" style="width:16px;height:20px"></div><span class="sp-name">p-4 / gap-4</span><span class="sp-val">16px · default</span></div>
+          <div class="sp-row"><div class="sp-box" style="width:20px;height:20px"></div><span class="sp-name">p-5 / gap-5</span><span class="sp-val">20px · card kompak</span></div>
+          <div class="sp-row"><div class="sp-box" style="width:24px;height:20px"></div><span class="sp-name">p-6 / gap-6</span><span class="sp-val">24px · card form</span></div>
+          <div class="sp-row"><div class="sp-box" style="width:32px;height:20px"></div><span class="sp-name">p-8 / gap-8</span><span class="sp-val">32px · pagination wrap</span></div>
+        </div></div>
+      </div>
+
+      <div class="sub">
+        <div class="sub-label">Border Radius</div>
+        <div class="card"><div class="card-body">
+          <div class="rad-grid">
+            <div class="rad-item">
+              <div class="rad-box" style="border-radius:6px"></div>
+              <div class="rad-lbl chip">rounded</div>
+              <div class="rad-sub">6px<br>pag nav btn</div>
+            </div>
+            <div class="rad-item">
+              <div class="rad-box" style="border-radius:8px"></div>
+              <div class="rad-lbl chip">rounded-lg</div>
+              <div class="rad-sub">8px<br>input / select</div>
+            </div>
+            <div class="rad-item">
+              <div class="rad-box" style="border-radius:12px"></div>
+              <div class="rad-lbl chip">rounded-xl</div>
+              <div class="rad-sub">12px<br>card / table</div>
+            </div>
+            <div class="rad-item">
+              <div class="rad-box" style="border-radius:9999px"></div>
+              <div class="rad-lbl chip">rounded-full</div>
+              <div class="rad-sub">∞<br>button / badge</div>
+            </div>
+          </div>
+          <div class="annot" style="margin-top:14px">
+            <span>📌</span>
+            <div>
+              <strong>Aturan cepat:</strong><br>
+              Card &amp; table → <code>rounded-xl</code><br>
+              Input / select → <code>rounded-lg</code><br>
+              Button aksi &amp; badge → <code>rounded-full</code>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TABLE ══════════════ -->
+  <div class="section" id="s-table">
+    <div class="sec-title">Table</div>
+
+    <div class="rule accent" style="margin-bottom:16px;font-size:13px;">
+      <strong>Fitur minimal yang wajib ada pada setiap tabel:</strong><br>
+      <span style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;">
+        <span style="background:#3b82f6;color:#fff;border-radius:9999px;padding:2px 10px;font-size:11.5px;font-weight:600">1</span>
+        <strong>Sort per kolom</strong> — setiap header kolom data harus bisa diklik ↑↓
+      </span><br>
+      <span style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;">
+        <span style="background:#3b82f6;color:#fff;border-radius:9999px;padding:2px 10px;font-size:11.5px;font-weight:600">2</span>
+        <strong>General Search</strong> — search box di <em>kanan atas</em>, mencari semua kolom sekaligus
+      </span><br>
+      <span style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;">
+        <span style="background:#3b82f6;color:#fff;border-radius:9999px;padding:2px 10px;font-size:11.5px;font-weight:600">3</span>
+        <strong>Pagination</strong> — navigasi halaman + rows per page menggunakan <code>Pagination.vue</code>
+      </span>
+      <div style="margin-top:10px;font-size:12px;color:#1e40af;">Tabel tanpa salah satu dari ketiganya dianggap belum sesuai standar.</div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Demo Interaktif — Coba Sort &amp; Search</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-title">Daftar Goods</div>
+          <div class="search-wrap">
+            <svg class="search-ico" width="14" height="14" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0Z"/>
+            </svg>
+            <input id="demo-search" class="search-inp" type="search" placeholder="Cari..." oninput="filterTable()" />
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl" id="demo-table">
+            <thead>
+              <tr>
+                <th onclick="sortTable(0)">No <span class="sort-icon">↕</span></th>
+                <th onclick="sortTable(1)">Nama Barang <span class="sort-icon">↕</span></th>
+                <th onclick="sortTable(2)">Kategori <span class="sort-icon">↕</span></th>
+                <th onclick="sortTable(3)">Status <span class="sort-icon">↕</span></th>
+                <th class="no-sort">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="demo-tbody">
+              <tr><td>1</td><td>Kanban A-001</td><td>Consumable</td><td><span class="badge b-green">Active</span></td><td><button class="btn btn-blue btn-xs">Edit</button></td></tr>
+              <tr><td>2</td><td>Roller Chain B-22</td><td>Tooling</td><td><span class="badge b-yellow">Pending</span></td><td><button class="btn btn-red btn-xs">Hapus</button></td></tr>
+              <tr><td>3</td><td>Grease Shell C</td><td>Consumable</td><td><span class="badge b-red">Inactive</span></td><td><button class="btn btn-ghost btn-xs">Detail</button></td></tr>
+              <tr><td>4</td><td>Baut M8x20</td><td>Plant Service</td><td><span class="badge b-green">Active</span></td><td><button class="btn btn-blue btn-xs">Edit</button></td></tr>
+              <tr><td>5</td><td>Filter Udara</td><td>Tooling</td><td><span class="badge b-green">Active</span></td><td><button class="btn btn-blue btn-xs">Edit</button></td></tr>
+              <tr><td>6</td><td>Coolant Z-Pro</td><td>Consumable</td><td><span class="badge b-yellow">Pending</span></td><td><button class="btn btn-red btn-xs">Hapus</button></td></tr>
+            </tbody>
+          </table>
+          <div id="demo-empty" class="tbl-empty" style="display:none">Tidak ada data yang cocok.</div>
+        </div>
+        <div class="pag">
+          <div class="pag-info">Showing 1 – 6 of 6</div>
+          <div class="pag-btns">
+            <button class="pag-btn" disabled>«</button>
+            <button class="pag-btn" disabled>‹</button>
+            <button class="pag-btn active">1</button>
+            <button class="pag-btn" disabled>›</button>
+            <button class="pag-btn" disabled>»</button>
+          </div>
+          <div class="pag-rows">Rows: <select><option>5</option><option selected>10</option><option>25</option><option>50</option></select></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Padding Standar</div>
+      <div class="g2">
+        <div class="rule accent">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#94a3b8;margin-bottom:5px">THEAD</div>
+          <span class="chip blue">px-4</span> <span class="chip blue">py-2</span>
+          <div style="font-size:11.5px;color:#475569;margin-top:6px">16px horizontal · 8px vertical</div>
+        </div>
+        <div class="rule accent">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#94a3b8;margin-bottom:5px">TBODY</div>
+          <span class="chip blue">px-5</span> <span class="chip blue">py-2.5</span>
+          <div style="font-size:11.5px;color:#475569;margin-top:6px">20px horizontal · 10px vertical</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Komponen yang Harus Dipakai</div>
+      <div class="g2">
+        <div class="rule">
+          <div style="font-weight:600;margin-bottom:5px;font-size:13px">TableSearch.vue</div>
+          <div style="font-size:12px;color:#475569;margin-bottom:6px">Tabel standar — sort + global search otomatis</div>
+          <span class="chip green">searchable: true</span> <span class="chip green">sortable: true</span>
+        </div>
+        <div class="rule">
+          <div style="font-weight:600;margin-bottom:5px;font-size:13px">DataTableFilter.vue</div>
+          <div style="font-size:12px;color:#475569;margin-bottom:6px">Filter per kolom — tambahkan search box manual di atas</div>
+          <span class="chip green">filterable per col</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Kode Referensi</div>
+      <div class="copy-wrap">
+        <pre class="code-block" id="code-table">&lt;!-- Toolbar: judul + search box --&gt;
+&lt;div class="flex items-center justify-between mb-3"&gt;
+  &lt;h3 class="text-[15px] font-semibold"&gt;Daftar Data&lt;/h3&gt;
+  &lt;div class="relative"&gt;
+    &lt;!-- icon search --&gt;
+    &lt;input v-model="searchQuery" type="search" placeholder="Cari..."
+           class="pl-9 pr-4 py-2 text-sm bg-gray-50 border border-gray-300
+                  rounded-lg focus:ring-2 focus:border-blue-500 outline-none w-64" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Table wrapper --&gt;
+&lt;div class="overflow-x-auto rounded-xl border border-gray-200"&gt;
+  &lt;table class="w-full text-sm text-left"&gt;
+    &lt;thead class="bg-gray-50"&gt;
+      &lt;tr&gt;
+        &lt;!-- Kolom data: wajib ada sort --&gt;
+        &lt;th class="px-4 py-2 text-xs font-semibold uppercase tracking-wide
+                   cursor-pointer" @click="sort('nama')"&gt;
+          Nama &lt;span&gt;↕&lt;/span&gt;
+        &lt;/th&gt;
+        &lt;!-- Kolom aksi: tidak perlu sort --&gt;
+        &lt;th class="px-4 py-2 text-xs font-semibold uppercase tracking-wide"&gt;
+          Aksi
+        &lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200 hover:bg-blue-50"&gt;
+        &lt;td class="px-5 py-2.5"&gt;Data&lt;/td&gt;
+        &lt;td class="px-5 py-2.5"&gt;
+          &lt;button class="text-xs px-3 py-1 rounded-full ..."&gt;Edit&lt;/button&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</pre>
+        <button class="copy-btn" onclick="copyCode('code-table',this)">Copy</button>
+      </div>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-box"><div class="icon">✅</div>Kolom "Aksi" tidak perlu sort — set <code>filterable: false</code> dan jangan beri ikon ↕</div>
+      <div class="dont-box"><div class="icon">❌</div>Jangan buat tabel baru tanpa sort &amp; search — selalu pakai <code>TableSearch.vue</code></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PAGINATION ══════════════ -->
+  <div class="section" id="s-pag">
+    <div class="sec-title">Pagination</div>
+
+    <div class="sub">
+      <div class="sub-label">Layout — 3 Bagian Sejajar</div>
+      <div class="rule accent" style="font-size:13px;">
+        <span class="chip blue">① Info</span> di kiri &nbsp;·&nbsp;
+        <span class="chip blue">② Navigasi halaman</span> di tengah &nbsp;·&nbsp;
+        <span class="chip blue">③ Rows per page</span> di kanan
+        <div style="margin-top:6px;font-size:12px;color:#475569">Desktop: flex-row · Mobile: flex-col</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Demo Interaktif</div>
+      <div class="card">
+        <div style="padding:0">
+          <div class="pag">
+            <div class="pag-info" id="pag-info">Showing 1 – 10 of 47</div>
+            <div class="pag-btns">
+              <button class="pag-btn" id="pf" onclick="pagGo('first')" disabled>«</button>
+              <button class="pag-btn" id="pp" onclick="pagGo('prev')"  disabled>‹</button>
+              <button class="pag-btn active" id="p1" onclick="pagGo(1)">1</button>
+              <button class="pag-btn"        id="p2" onclick="pagGo(2)">2</button>
+              <button class="pag-btn"        id="p3" onclick="pagGo(3)">3</button>
+              <button class="pag-btn"        id="p4" onclick="pagGo(4)">4</button>
+              <button class="pag-btn"        id="p5" onclick="pagGo(5)">5</button>
+              <button class="pag-btn"        id="pn" onclick="pagGo('next')">›</button>
+              <button class="pag-btn"        id="pl" onclick="pagGo('last')">»</button>
+            </div>
+            <div class="pag-rows">Rows: <select onchange="pagRows(this.value)">
+              <option>5</option><option selected>10</option><option>25</option><option>50</option>
+            </select></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Spesifikasi</div>
+      <div class="g3">
+        <div class="rule">
+          <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;margin-bottom:5px">Container</div>
+          <span class="chip">px-8</span> <span class="chip">py-3.5</span>
+          <div style="font-size:11.5px;color:#475569;margin-top:5px">32px · 14px</div>
+        </div>
+        <div class="rule">
+          <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;margin-bottom:5px">Tombol Aktif</div>
+          <span class="chip blue">bg-[primary]</span> <span class="chip blue">text-white</span>
+          <div style="font-size:11.5px;color:#475569;margin-top:5px">warna primary project</div>
+        </div>
+        <div class="rule">
+          <div style="font-size:11px;color:#94a3b8;text-transform:uppercase;margin-bottom:5px">Options &amp; Default</div>
+          <div style="font-size:12.5px"><strong>5, 10, 25, 50</strong></div>
+          <div style="font-size:11.5px;color:#475569;margin-top:3px">Default: <strong>10</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annot">
+      <span>📌</span>
+      Selalu gunakan komponen <code>Pagination.vue</code> di <code>src/components/table/</code> — jangan buat ulang.
+      Label wajib <strong>"Rows:"</strong>, bukan "Items per page" atau "Per halaman".
+    </div>
+  </div>
+
+  <!-- ══════════════ BUTTON ══════════════ -->
+  <div class="section" id="s-btn">
+    <div class="sec-title">Button</div>
+
+    <div class="sub">
+      <div class="sub-label">Semantik — Pilih Warna Berdasarkan Makna</div>
+      <div class="card"><div class="card-body">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-blue btn-md">Primary</button>
+            <div style="font-size:12.5px;color:#475569">Aksi utama halaman, navigasi ke langkah berikut</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-green btn-md">Success</button>
+            <div style="font-size:12.5px;color:#475569">Simpan, Konfirmasi, Submit form</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-red btn-md">Danger</button>
+            <div style="font-size:12.5px;color:#475569">Hapus, Batalkan transaksi, Aksi destruktif</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-orange btn-md">Warning</button>
+            <div style="font-size:12.5px;color:#475569">Reset, aksi berisiko yang perlu perhatian</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-ghost btn-md">Secondary</button>
+            <div style="font-size:12.5px;color:#475569">Batal, Kembali, Detail — non-destructive</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Ukuran</div>
+      <div class="card"><div class="card-body">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-blue btn-lg">Large</button>
+            <span class="chip">px-5 py-2 text-sm</span>
+            <span style="font-size:12px;color:#94a3b8">Submit form utama, modal confirm</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-blue btn-md">Default</button>
+            <span class="chip">px-4 py-2 text-sm</span>
+            <span style="font-size:12px;color:#94a3b8">Toolbar, aksi utama halaman</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-blue btn-sm">Small</button>
+            <span class="chip">px-3.5 py-1.5 text-xs</span>
+            <span style="font-size:12px;color:#94a3b8">Aksi dalam card</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-blue btn-xs">XSmall</button>
+            <span class="chip">px-3 py-1 text-xs</span>
+            <span style="font-size:12px;color:#94a3b8">Aksi dalam baris tabel</span>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Template Class</div>
+      <div class="copy-wrap">
+        <pre class="code-block" id="code-btn">&lt;button class="flex items-center gap-2 font-medium rounded-full
+               text-sm px-4 py-2 text-white
+               bg-[warna]-500 hover:bg-[warna]-600
+               focus:outline-none focus:ring-2 focus:ring-[warna]-300"&gt;
+  &lt;!-- icon (opsional) --&gt;
+  Label
+&lt;/button&gt;</pre>
+        <button class="copy-btn" onclick="copyCode('code-btn',this)">Copy</button>
+      </div>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-box"><div class="icon">✅</div>Semua action button wajib <code>rounded-full</code> — tanpa terkecuali</div>
+      <div class="dont-box"><div class="icon">❌</div>Jangan pakai <code>rounded-md</code> atau <code>rounded-lg</code> untuk button</div>
+    </div>
+  </div>
+
+  <!-- ══════════════ FORM ══════════════ -->
+  <div class="section" id="s-form">
+    <div class="sec-title">Form &amp; Input</div>
+
+    <div class="sub">
+      <div class="sub-label">Demo Interaktif</div>
+      <div class="card">
+        <div class="card-head"><div class="card-head-title">Form Tambah Barang</div></div>
+        <div class="card-body-lg">
+          <div class="form-grid" style="margin-bottom:14px">
+            <div>
+              <label class="form-label">Nama Barang</label>
+              <input class="inp" type="text" placeholder="Masukkan nama barang..." />
+            </div>
+            <div>
+              <label class="form-label">Kategori</label>
+              <select class="inp">
+                <option>-- Pilih Kategori --</option>
+                <option>Consumable</option>
+                <option>Tooling</option>
+                <option>Plant Service</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Kode Barang</label>
+              <input class="inp" type="text" placeholder="Mis. KBG-001" />
+            </div>
+            <div>
+              <label class="form-label">Status</label>
+              <select class="inp">
+                <option>Active</option>
+                <option>Inactive</option>
+                <option>Pending</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="form-label">Keterangan</label>
+            <textarea class="inp" rows="2" placeholder="Keterangan tambahan..." style="resize:vertical"></textarea>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px">
+            <button class="btn btn-ghost btn-sm">Batal</button>
+            <button class="btn btn-green btn-sm">Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Spesifikasi Input</div>
+      <div class="rule accent">
+        <div style="margin-bottom:8px"><strong>Class standar untuk semua input / select / textarea:</strong></div>
+        <span class="chip">bg-gray-50</span>
+        <span class="chip">border border-gray-300</span>
+        <span class="chip">rounded-lg</span>
+        <span class="chip">px-3.5 py-2.5</span>
+        <span class="chip">text-sm</span>
+        <span class="chip">focus:ring-2</span>
+        <span class="chip">focus:border-blue-500</span>
+        <span class="chip">focus:bg-white</span>
+        <span class="chip">outline-none</span>
+        <span class="chip">w-full</span>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Kode Referensi</div>
+      <div class="copy-wrap">
+        <pre class="code-block" id="code-form">&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
+  &lt;div&gt;
+    &lt;label class="block text-sm font-semibold mb-1.5"&gt;Label&lt;/label&gt;
+    &lt;input class="w-full bg-gray-50 border border-gray-300 rounded-lg
+                  px-3.5 py-2.5 text-sm focus:ring-2 focus:border-blue-500
+                  focus:bg-white outline-none" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Tombol selalu kanan bawah, urutan: [Batal] [Simpan] --&gt;
+&lt;div class="flex justify-end gap-2 mt-4"&gt;
+  &lt;button class="... rounded-full px-4 py-2 text-sm"&gt;Batal&lt;/button&gt;
+  &lt;button class="... rounded-full px-4 py-2 text-sm"&gt;Simpan&lt;/button&gt;
+&lt;/div&gt;</pre>
+        <button class="copy-btn" onclick="copyCode('code-form',this)">Copy</button>
+      </div>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-box"><div class="icon">✅</div>Label selalu <strong>di atas</strong> input. Tombol form di kanan bawah: [Batal] [Simpan]</div>
+      <div class="dont-box"><div class="icon">❌</div>Jangan pakai <code>rounded-md</code> untuk input. Jangan hilangkan <code>focus:ring-2</code></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CARD & BADGE ══════════════ -->
+  <div class="section" id="s-card">
+    <div class="sec-title">Card &amp; Badge</div>
+
+    <div class="sub">
+      <div class="sub-label">Demo Card</div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-title">Judul Card</div>
+          <button class="btn btn-blue btn-xs">+ Tambah</button>
+        </div>
+        <div class="card-body-lg" style="color:#475569;font-size:13px">
+          Konten card ada di sini. Gunakan <code>p-5</code> untuk kompak atau <code>p-6</code> untuk form.
+        </div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Spesifikasi Card</div>
+      <div class="rule accent">
+        <div><strong>Wrapper:</strong> <span class="chip">bg-white</span> <span class="chip">border border-gray-200</span> <span class="chip blue">rounded-xl</span> <span class="chip">shadow-sm</span></div>
+        <div style="margin-top:7px"><strong>Header:</strong> <span class="chip">px-5 py-4</span> <span class="chip">border-b border-gray-200</span></div>
+        <div style="margin-top:7px"><strong>Body form:</strong> <span class="chip">p-6</span> &nbsp;·&nbsp; <strong>Body kompak:</strong> <span class="chip">p-5</span></div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-label">Badge / Status Chip</div>
+      <div class="card"><div class="card-body">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span class="badge b-green">Active</span>
+            <div style="font-size:12.5px;color:#475569">Hijau — data aktif, proses selesai, OK</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span class="badge b-red">Inactive</span>
+            <div style="font-size:12.5px;color:#475569">Merah — tidak aktif, gagal, error</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span class="badge b-yellow">Pending</span>
+            <div style="font-size:12.5px;color:#475569">Kuning / Oranye — menunggu, belum selesai</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span class="badge b-indigo">Info</span>
+            <div style="font-size:12.5px;color:#475569">Indigo / Biru — informasi tambahan</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span class="badge b-gray">Draft</span>
+            <div style="font-size:12.5px;color:#475569">Abu-abu — draft, tidak diketahui, default</div>
+          </div>
+        </div>
+        <div class="annot" style="margin-top:14px">
+          <span>📌</span>
+          <div>
+            Class dasar: <span class="chip">inline-flex items-center</span> <span class="chip">px-2.5 py-0.5</span> <span class="chip blue">rounded-full</span> <span class="chip">text-xs font-semibold</span><br>
+            Background: shade <strong>100</strong> (pastel) · Teks: shade <strong>700–800</strong> (gelap)
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="do-dont">
+      <div class="do-box"><div class="icon">✅</div>Badge pakai background <strong>pastel</strong> (shade 100) — lembut dan mudah dibaca</div>
+      <div class="dont-box"><div class="icon">❌</div>Jangan pakai warna solid (shade 500) untuk badge — itu khusus untuk button</div>
+    </div>
+  </div>
+
+</div><!-- end root -->
+
+<script>
+// ── TAB SWITCH ──
+function go(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── TABLE SORT ──
+let sortCol = -1, sortDir = 1;
+function sortTable(col) {
+  const tbody = document.getElementById('demo-tbody');
+  const ths   = document.querySelectorAll('#demo-table thead th');
+  ths.forEach(th => th.classList.remove('sort-asc', 'sort-desc'));
+  if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; }
+  ths[col].classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  rows.sort((a, b) => {
+    const av = a.cells[col].innerText.trim().toLowerCase();
+    const bv = b.cells[col].innerText.trim().toLowerCase();
+    const an = parseFloat(av), bn = parseFloat(bv);
+    if (!isNaN(an) && !isNaN(bn)) return (an - bn) * sortDir;
+    return av.localeCompare(bv) * sortDir;
+  });
+  rows.forEach(r => tbody.appendChild(r));
+}
+
+// ── TABLE SEARCH ──
+function filterTable() {
+  const q    = document.getElementById('demo-search').value.toLowerCase();
+  const rows = document.querySelectorAll('#demo-tbody tr');
+  let vis = 0;
+  rows.forEach(r => {
+    const match = r.innerText.toLowerCase().includes(q);
+    r.style.display = match ? '' : 'none';
+    if (match) vis++;
+  });
+  document.getElementById('demo-empty').style.display = vis === 0 ? '' : 'none';
+}
+
+// ── PAGINATION DEMO ──
+let pagCur = 1, pagTotal = 5, pagPer = 10, pagCount = 47;
+function pagRender() {
+  const from = (pagCur - 1) * pagPer + 1;
+  const to   = Math.min(pagCur * pagPer, pagCount);
+  document.getElementById('pag-info').textContent = `Showing ${from} – ${to} of ${pagCount}`;
+  for (let i = 1; i <= 5; i++) {
+    const btn = document.getElementById('p' + i);
+    if (btn) { btn.classList.toggle('active', i === pagCur); btn.disabled = false; }
+  }
+  document.getElementById('pf').disabled = pagCur === 1;
+  document.getElementById('pp').disabled = pagCur === 1;
+  document.getElementById('pn').disabled = pagCur === pagTotal;
+  document.getElementById('pl').disabled = pagCur === pagTotal;
+}
+function pagGo(v) {
+  if      (v === 'first') pagCur = 1;
+  else if (v === 'last')  pagCur = pagTotal;
+  else if (v === 'prev')  pagCur = Math.max(1, pagCur - 1);
+  else if (v === 'next')  pagCur = Math.min(pagTotal, pagCur + 1);
+  else                    pagCur = v;
+  pagRender();
+}
+function pagRows(v) {
+  pagPer   = parseInt(v);
+  pagTotal = Math.ceil(pagCount / pagPer);
+  pagCur   = 1;
+  pagRender();
+}
+pagRender();
+
+// ── COPY CODE ──
+function copyCode(id, btn) {
+  const text = document.getElementById(id).innerText || document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>

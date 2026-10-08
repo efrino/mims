@@ -1,0 +1,68 @@
+export interface SpecMachine {
+  id: number;
+  area: string | null;
+  line: string | null;
+  machine: string;
+  tipe_gun?: string | null;
+  gun_type_detail?: string | null;
+  stroke_dress?: number | null;
+  dress_tip_change?: number | null;
+  downtime?: number | null;
+  upper_holder: string | null;
+  lower_holder: string | null;
+  kva: string | null;
+  id_ms_nut?: number | null;
+  raw_nut_type?: string | null;
+  nut_type: string | null;
+  nut_type_alias?: string | null;
+  nut_part_number?: string | null;
+  nut_feeder: string | null;
+  rotary_holder: string | null;
+  handy_navi: string | null;
+  robo_navi: string | null;
+  gate_sensor: string | null;
+  nut_feeder_type: string | null;
+  pos_row: number | null;
+  pos_col: number | null;
+  robo_navi_integrated: number | null;
+  handy_navi_integrated: number | null;
+  gate_sensor_integrated: number | null;
+  is_polybox: string | null;
+  is_pallet: string | null;
+  is_deleted?: number | string | null;
+  note: string | null;
+  status: number | null;
+  created_by: string | null;
+  created_at: string;
+  updated_by: string | null;
+  updated_at: string;
+}
+
+export interface SpecMachineForm {
+  id?: number | string;
+  area: string;
+  line: string;
+  machine: string;
+  tipe_gun?: string | null;
+  gun_type_detail?: string | null;
+  stroke_dress?: number | string | null;
+  dress_tip_change?: number | string | null;
+  downtime?: number | string | null;
+  upper_holder: string;
+  lower_holder: string;
+  kva: string;
+  id_ms_nut?: number | string | null;
+  nut_type: string;
+  nut_feeder: string;
+  rotary_holder: string;
+  handy_navi: string;
+  robo_navi: string;
+  gate_sensor: string;
+  nut_feeder_type: string;
+  robo_navi_integrated: number | string | null;
+  handy_navi_integrated: number | string | null;
+  gate_sensor_integrated: number | string | null;
+  is_polybox: string;
+  is_pallet: string;
+  note: string;
+}

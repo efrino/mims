@@ -1,0 +1,51 @@
+/* styles/dark-tailwind.css — MODE GELAP untuk utilitas Tailwind terang (2026-10-02)
+ *
+ * Banyak komponen lama memakai bg-white / text-gray-* / border-gray-* tanpa varian `dark:`.
+ * Saat <html class="dark"> (stores/theme.ts), kelas-kelas itu dipetakan ke palet slate
+ * yang sama dengan --wui-* (styles/welding-ui.css).
+ *
+ * Elemen yang SUDAH punya varian dark untuk properti itu (mis. `dark:bg-slate-900`)
+ * dikecualikan lewat :not([class*="dark:bg-"]) dst., jadi pilihan eksplisit tetap menang.
+ * Kode baru: tulis varian `dark:` sendiri atau pakai kelas wui-*, jangan bergantung file ini.
+ */
+
+/* ── Latar ─────────────────────────────────────────────────────────────── */
+.dark .bg-white:not([class*='dark:bg-'])     { background-color: #1e293b; }
+.dark :is(.bg-gray-50, .bg-slate-50):not([class*='dark:bg-'])   { background-color: #172033; }
+.dark :is(.bg-gray-100, .bg-slate-100):not([class*='dark:bg-']) { background-color: #273449; }
+.dark :is(.bg-gray-200, .bg-slate-200):not([class*='dark:bg-']) { background-color: #334155; }
+.dark :is(.hover\:bg-gray-50, .hover\:bg-gray-100):hover:not([class*='dark:hover:bg-']) { background-color: #273449; }
+
+/* Tint berwarna (badge, highlight, baris terpilih) */
+.dark .bg-blue-50:not([class*='dark:bg-'])   { background-color: rgba(59, 130, 246, 0.14); }
+.dark .bg-blue-100:not([class*='dark:bg-'])  { background-color: rgba(59, 130, 246, 0.22); }
+.dark .bg-green-50:not([class*='dark:bg-']),
+.dark .bg-emerald-50:not([class*='dark:bg-']) { background-color: rgba(16, 185, 129, 0.14); }
+.dark .bg-green-100:not([class*='dark:bg-']) { background-color: rgba(16, 185, 129, 0.22); }
+.dark .bg-red-50:not([class*='dark:bg-'])    { background-color: rgba(239, 68, 68, 0.14); }
+.dark .bg-red-100:not([class*='dark:bg-'])   { background-color: rgba(239, 68, 68, 0.22); }
+.dark :is(.bg-yellow-50, .bg-amber-50):not([class*='dark:bg-'])   { background-color: rgba(245, 158, 11, 0.14); }
+.dark :is(.bg-yellow-100, .bg-amber-100):not([class*='dark:bg-']) { background-color: rgba(245, 158, 11, 0.22); }
+
+/* ── Teks ──────────────────────────────────────────────────────────────── */
+.dark :is(.text-black, .text-gray-900, .text-gray-800, .text-slate-900, .text-slate-800):not([class*='dark:text-']) { color: #f1f5f9; }
+.dark :is(.text-gray-700, .text-gray-600, .text-slate-700, .text-slate-600):not([class*='dark:text-']) { color: #cbd5e1; }
+.dark :is(.text-gray-500, .text-slate-500):not([class*='dark:text-']) { color: #94a3b8; }
+.dark :is(.text-blue-600, .text-blue-700, .text-blue-800):not([class*='dark:text-'])   { color: #93c5fd; }
+.dark :is(.text-green-600, .text-green-700, .text-green-800):not([class*='dark:text-']) { color: #6ee7b7; }
+.dark :is(.text-red-600, .text-red-700, .text-red-800):not([class*='dark:text-'])       { color: #fca5a5; }
+.dark :is(.text-yellow-700, .text-yellow-800, .text-amber-700, .text-amber-800):not([class*='dark:text-']) { color: #fcd34d; }
+
+/* ── Garis ─────────────────────────────────────────────────────────────── */
+.dark :is(.border-gray-100, .border-gray-200, .border-gray-300, .border-slate-200, .border-slate-300):not([class*='dark:border-']) { border-color: #334155; }
+.dark :is(.divide-gray-100, .divide-gray-200) > :not(:last-child) { border-color: #334155; }
+
+/* ── Form bawaan (input/select/textarea polos ber-bg-white) ────────────── */
+.dark :is(input, select, textarea).bg-white:not([class*='dark:']) { color: #f1f5f9; }
+.dark :is(input, textarea)::placeholder { color: #64748b; }
+
+/* ── ApexCharts: label & grid default berwarna gelap ───────────────────── */
+.dark :is(.apexcharts-text, .apexcharts-legend-text, .apexcharts-title-text) { fill: #cbd5e1; color: #cbd5e1 !important; }
+.dark .apexcharts-gridline { stroke: #334155; }
+.dark .apexcharts-tooltip.apexcharts-theme-light { background: #1e293b; border-color: #334155; color: #f1f5f9; }
+.dark .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title { background: #273449; border-color: #334155; }

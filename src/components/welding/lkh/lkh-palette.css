@@ -1,0 +1,23 @@
+/* components/welding/lkh/lkh-palette.css
+   Warna header/sel LKH — SATU sumber untuk tabel layar (LKHDualTable) dan cetak
+   (LKHPrint), supaya yang dilihat foreman di layar = yang tercetak. */
+:root {
+  --lkh-base: #2e5396;        /* NO, JOB, PART, STATUS, KETERANGAN */
+  --lkh-base-line: #1a3a78;
+  --lkh-info: #4b5563;        /* MC WELD, Nut/Spot, Qty/Kbn */
+  --lkh-patan: #5b21b6;
+  --lkh-day: #1d4ed8;
+  --lkh-night: #0f172a;
+  --lkh-plan-grp: #475569;    /* judul grup PLAN PROD (beda dari sub-header) */
+  --lkh-plan: #cbd5e1;        /* sub-header kbn/Lot/stroke (teks gelap) */
+  --lkh-plan-ink: #1e293b;
+  --lkh-act: #059669;         /* header Actual Prod */
+  --lkh-pjk: #10b981;
+  --lkh-pjk-ink: #064e3b;
+  /* Sel body — tipis supaya angka tetap jelas dibaca */
+  --lkh-td-patan: #f5f3ff;
+  --lkh-td-plan: #f1f5f9;
+  --lkh-td-act: #ecfdf5;
+  --lkh-td-pjk: #d1fae5;
+  --lkh-total: #e8e8e8;
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "date": "2025-11-24",
+    "shift": 1,
+    "part_number": "PN-001",
+    "part_name": "Bracket A",
+    "qty": 180,
+    "qty_sap": 175,
+    "keterangan": "OK"
+  },
+  {
+    "date": "2025-11-25",
+    "shift": 2,
+    "part_number": "PN-002",
+    "part_name": "Bracket B",
+    "qty": 140,
+    "qty_sap": 138,
+    "keterangan": "OK"
+  },
+  {
+    "date": "2025-11-26",
+    "shift": 1,
+    "part_number": "PN-003",
+    "part_name": "Bracket C",
+    "qty": 240,
+    "qty_sap": 235,
+    "keterangan": "OK"
+  }
+]

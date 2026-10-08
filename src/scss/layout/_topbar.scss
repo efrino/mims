@@ -1,0 +1,117 @@
+.profileBtn {
+  height: 44px !important;
+  margin: 0 20px 0 10px !important;
+  padding: 0 6px;
+  .v-avatar {
+    width: 32px;
+    height: 32px;
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
+
+.chatAiBtn {
+  position: relative !important;
+  height: 40px !important;
+  padding: 0 14px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  overflow: visible !important;
+  z-index: 1;
+}
+
+.chatAiBtn :deep(.v-btn__content) {
+  position: relative;
+  z-index: 3;
+}
+
+.chatAiBtn :deep(.v-btn__overlay),
+.chatAiBtn :deep(.v-btn__underlay) {
+  display: none !important;
+}
+
+.chatAiBtn::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 9px;
+  
+  /* Palette Warna Google AI / Gemini */
+  background: linear-gradient(
+    135deg,
+    #4285f4,
+    #9b51e0,
+    #e91e63,
+    #fbbc05,
+    #34a853,
+    #4285f4
+  );
+  background-size: 300% 300%;
+  
+  animation: 
+    aiGradientMove 3s linear infinite,
+    aiBlinkGlow 1.8s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.chatAiBtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px !important;
+  background: #ffffff;
+  z-index: 2;
+}
+
+@keyframes aiGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes aiBlinkGlow {
+  0% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 2px rgba(66, 133, 244, 0.4));
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(155, 81, 224, 0.8));
+  }
+}
+
+@media (max-width: 600px) {
+  .profileBtn {
+    min-width: 42px;
+    margin: 0 12px 0 0 !important;
+    .v-avatar {
+      width: 24px;
+      height: 24px;
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .notification-dropdown {
+    width: 332px !important;
+    .v-list-item__content {
+      .d-inline-flex {
+        .text-caption {
+          min-width: 50px;
+        }
+      }
+    }
+  }
+}

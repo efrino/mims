@@ -1,0 +1,282 @@
+/* styles/welding-ui.css — STANDAR TAMPILAN halaman welding (2026-09-30)
+ *
+ * Acuan: halaman Mutasi Bulanan (mutasi-unified.vue + components/welding/mutation).
+ * Pakai kelas `wui-*` ini untuk halaman baru / revisi, JANGAN bikin gaya lokal baru
+ * untuk header, tombol, input, kartu statistik, tabel. Gaya lokal hanya utk hal
+ * yang memang khas halaman itu.
+ *
+ * Kerangka halaman:
+ *   <div class="wui-page">
+ *     <header class="wui-header">
+ *       <div class="wui-header__icon"><i class="mdi mdi-…"></i></div>
+ *       <div class="wui-header__title"><h1>Judul</h1><p>Subjudul</p></div>
+ *       <div class="wui-header__actions"> …wui-btn… </div>
+ *     </header>
+ *     <div class="wui-toolbar"> …wui-meta / wui-chip…  <div class="wui-toolbar__right">…</div></div>
+ *     <main class="wui-body"> …wui-card / wui-stats / wui-filters / wui-table-wrap… </main>
+ *   </div>
+ */
+
+:root {
+  --wui-bg: #f1f5f9;
+  --wui-surface: #ffffff;
+  --wui-border: #e2e8f0;
+  --wui-border-strong: #cbd5e1;
+  --wui-text: #1e293b;
+  --wui-text-2: #475569;
+  --wui-muted: #64748b;
+  --wui-faint: #94a3b8;
+  --wui-primary: #2563eb;
+  --wui-primary-2: #1d4ed8;
+  --wui-navy-1: #3b5998;   /* header tabel Mutasi */
+  --wui-navy-2: #2d4373;
+  --wui-accent-text: #1d4ed8;
+  --wui-focus: #93c5fd;
+  --wui-hover-surface: #f8fafc;
+  --wui-row-alt: #fafbfd;
+  --wui-row-hover: #eff6ff;
+  --wui-row-line: #eef2f7;
+  --wui-cell: #334155;
+  --wui-new-row: #fef9c3;
+  --wui-success: #059669;
+  --wui-teal: #0d9488;
+  --wui-violet: #7c3aed;
+  --wui-amber: #f59e0b;
+  --wui-danger: #dc2626;
+  --wui-live: #10b981;
+  --wui-radius: 8px;
+  --wui-radius-lg: 12px;
+  --wui-shadow: 0 1px 3px rgba(15, 23, 42, .06);
+  --wui-shadow-pop: 0 10px 25px -5px rgba(15, 23, 42, .18);
+  --wui-shadow-modal: 0 24px 48px -12px rgba(15, 23, 42, .35);
+}
+
+/* Mode gelap: .dark dipasang di <html> oleh theme store. Warna tombol aksi sama
+   di kedua tema; hanya permukaan, teks, garis, dan tint chip yang berubah. */
+.dark {
+  --wui-bg: #0f172a;
+  --wui-surface: #1e293b;
+  --wui-border: #334155;
+  --wui-border-strong: #475569;
+  --wui-text: #f1f5f9;
+  --wui-text-2: #cbd5e1;
+  --wui-muted: #94a3b8;
+  --wui-faint: #64748b;
+  --wui-navy-1: #334d80;
+  --wui-navy-2: #1e2f52;
+  --wui-accent-text: #93c5fd;
+  --wui-focus: #60a5fa;
+  --wui-hover-surface: #273449;
+  --wui-row-alt: #222e42;
+  --wui-row-hover: #1e3a5f;
+  --wui-row-line: #2b3649;
+  --wui-cell: #cbd5e1;
+  --wui-new-row: #422006;
+  --wui-live: #34d399;
+  --wui-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+  --wui-shadow-pop: 0 10px 25px -5px rgba(0, 0, 0, .5);
+  --wui-shadow-modal: 0 24px 48px -12px rgba(0, 0, 0, .6);
+
+  /* --dm-*: HANYA ada di mode gelap. Gaya lama ditulis `var(--dm-surface, #fff)` →
+     mode terang persis warna asli, mode gelap ikut token ini (dipakai Master Data). */
+  --dm-surface: #1e293b;
+  --dm-surface2: #222e42;
+  --dm-row-hover: #1e3a5f;
+  --dm-bg: #0f172a;
+  --dm-tint-blue: rgba(59, 130, 246, .16);
+  --dm-tint-amber: rgba(245, 158, 11, .14);
+  --dm-tint-green: rgba(16, 185, 129, .14);
+  --dm-tint-red: rgba(239, 68, 68, .14);
+  --dm-tint-violet: rgba(139, 92, 246, .16);
+  --dm-tint-teal: rgba(20, 184, 166, .14);
+  /* tint di atas --dm-surface, OPAQUE: utk sel sticky (tint transparan bikin data di belakangnya tembus) */
+  --dm-solid-blue: #23375a;
+  --dm-solid-amber: #3c3934;
+  --dm-solid-green: #1c3d45;
+  --dm-solid-red: #3b2d3c;
+  --dm-solid-violet: #2f3159;
+  --dm-solid-teal: #1d3d4a;
+  --dm-text: #f1f5f9;
+  --dm-cell: #cbd5e1;
+  --dm-text-2: #cbd5e1;
+  --dm-muted: #94a3b8;
+  --dm-faint: #7c8aa0;
+  --dm-accent: #93c5fd;
+  --dm-on-green: #6ee7b7;
+  --dm-on-amber: #fcd34d;
+  --dm-on-red: #fca5a5;
+  --dm-on-violet: #c4b5fd;
+  --dm-on-teal: #5eead4;
+  --dm-border: #334155;
+  --dm-border-strong: #475569;
+  --dm-bd-green: rgba(16, 185, 129, .4);
+  --dm-bd-amber: rgba(245, 158, 11, .4);
+  --dm-bd-red: rgba(239, 68, 68, .4);
+  --dm-bd-blue: rgba(59, 130, 246, .4);
+}
+
+/* ── Kerangka ─────────────────────────────────────────────────────────── */
+.wui-page {
+  position: fixed;
+  top: var(--v-layout-top, 0px); left: var(--v-layout-left, 0px);
+  right: 0; bottom: var(--v-layout-bottom, 0px);
+  z-index: 1;
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--wui-bg);
+  font-size: 12px; color: var(--wui-text);
+}
+.wui-header {
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+  min-height: 52px; padding: 8px 16px;
+  background: var(--wui-surface); border-bottom: 1px solid var(--wui-border);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+}
+.wui-header__icon {
+  width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+  display: grid; place-items: center; color: #fff; font-size: 16px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .15);
+}
+.wui-header__title { min-width: 0; }
+.wui-header__title h1 { margin: 0; font-size: 14px; font-weight: 700; line-height: 1.25; color: var(--wui-text); }
+.wui-header__title p  { margin: 2px 0 0; font-size: 11px; line-height: 1.3; color: var(--wui-faint); }
+.wui-header__actions { margin-left: auto; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+
+.wui-toolbar {
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0; flex-wrap: wrap;
+  min-height: 36px; padding: 4px 16px;
+  background: var(--wui-surface); border-bottom: 1px solid var(--wui-border);
+}
+.wui-toolbar__right { margin-left: auto; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.wui-meta { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--wui-muted); white-space: nowrap; }
+.wui-meta strong { color: var(--wui-text); }
+.wui-sep { color: var(--wui-border-strong); user-select: none; }
+
+.wui-body { flex: 1; min-height: 0; overflow: auto; padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Tombol ───────────────────────────────────────────────────────────── */
+.wui-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 32px; padding: 0 12px; border-radius: var(--wui-radius);
+  border: 1px solid var(--wui-border); background: var(--wui-surface); color: var(--wui-text-2);
+  font: inherit; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s, box-shadow .15s;
+}
+.wui-btn:hover:not(:disabled) { background: var(--wui-hover-surface); border-color: var(--wui-border-strong); }
+.wui-btn:focus-visible { outline: 2px solid var(--wui-focus); outline-offset: 1px; }
+.wui-btn:disabled { opacity: .5; cursor: not-allowed; }
+.wui-btn .mdi { font-size: 15px; line-height: 1; }
+.wui-btn--sm { height: 26px; padding: 0 10px; font-size: 11px; border-radius: 6px; }
+.wui-btn--sm .mdi { font-size: 13px; }
+.wui-btn--icon { width: 32px; padding: 0; }
+.wui-btn--sm.wui-btn--icon { width: 26px; }
+/* Tombol aksi berwarna (seperti Download/Template/Upload di Mutasi) */
+.wui-btn--primary, .wui-btn--success, .wui-btn--teal, .wui-btn--violet, .wui-btn--amber, .wui-btn--danger {
+  color: #fff; border-color: transparent; box-shadow: 0 1px 2px rgba(15, 23, 42, .12);
+}
+.wui-btn--primary { background: var(--wui-primary); }
+.wui-btn--primary:hover:not(:disabled) { background: var(--wui-primary-2); }
+.wui-btn--success { background: var(--wui-success); }
+.wui-btn--success:hover:not(:disabled) { background: #047857; }
+.wui-btn--teal    { background: var(--wui-teal); }
+.wui-btn--teal:hover:not(:disabled) { background: #0f766e; }
+.wui-btn--violet  { background: var(--wui-violet); }
+.wui-btn--violet:hover:not(:disabled) { background: #6d28d9; }
+.wui-btn--amber   { background: var(--wui-amber); }
+.wui-btn--amber:hover:not(:disabled) { background: #d97706; }
+.wui-btn--danger  { background: var(--wui-danger); }
+.wui-btn--danger:hover:not(:disabled) { background: #b91c1c; }
+
+/* Tombol status "Live" (titik berdenyut) */
+.wui-live .wui-live__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--wui-faint); }
+.wui-live--on { color: #047857; border-color: #a7f3d0; background: #ecfdf5; }
+.wui-live--on:hover:not(:disabled) { background: #d1fae5; border-color: #6ee7b7; }
+.wui-live--on .wui-live__dot { background: var(--wui-live); animation: wui-pulse 1.6s ease-in-out infinite; }
+@keyframes wui-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, .6); } 50% { box-shadow: 0 0 0 5px rgba(16, 185, 129, 0); } }
+
+/* ── Chip / badge ─────────────────────────────────────────────────────── */
+.wui-chip {
+  display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 8px;
+  border-radius: 999px; font-size: 10.5px; font-weight: 700; white-space: nowrap;
+  background: var(--wui-bg); color: var(--wui-text-2); border: 1px solid var(--wui-border);
+}
+.wui-chip--blue   { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+.wui-chip--violet { background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe; }
+.wui-chip--green  { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+.wui-chip--amber  { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+.wui-chip--red    { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+
+/* ── Input ────────────────────────────────────────────────────────────── */
+.wui-input, .wui-select {
+  height: 32px; padding: 0 10px; border-radius: var(--wui-radius);
+  border: 1px solid var(--wui-border); background: var(--wui-hover-surface); color: var(--wui-text);
+  font: inherit; font-size: 12px; outline: none; min-width: 0;
+  transition: border-color .15s, background .15s, box-shadow .15s;
+}
+.wui-input:focus, .wui-select:focus { background: var(--wui-surface); border-color: var(--wui-focus); box-shadow: 0 0 0 3px rgba(59, 130, 246, .12); }
+.wui-input--grow { flex: 1; min-width: 200px; }
+.wui-seg { display: inline-flex; height: 32px; padding: 2px; border-radius: var(--wui-radius); background: var(--wui-bg); border: 1px solid var(--wui-border); }
+.wui-seg button {
+  border: 0; background: transparent; padding: 0 12px; border-radius: 6px;
+  font: inherit; font-size: 12px; font-weight: 600; color: var(--wui-muted); cursor: pointer;
+}
+.wui-seg button.on, .wui-seg button[aria-pressed="true"] { background: var(--wui-surface); color: var(--wui-accent-text); box-shadow: 0 1px 2px rgba(15, 23, 42, .1); }
+
+/* ── Kartu & statistik ────────────────────────────────────────────────── */
+.wui-card { background: var(--wui-surface); border: 1px solid var(--wui-border); border-radius: var(--wui-radius-lg); box-shadow: var(--wui-shadow); }
+.wui-card__pad { padding: 12px 14px; }
+.wui-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.wui-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.wui-stat { background: var(--wui-surface); border: 1px solid var(--wui-border); border-radius: var(--wui-radius-lg); box-shadow: var(--wui-shadow); padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.wui-stat__val { font-size: 22px; font-weight: 800; line-height: 1.1; color: var(--wui-text); font-variant-numeric: tabular-nums; }
+.wui-stat__lbl { font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--wui-muted); }
+.wui-stat__sub { font-size: 11px; color: var(--wui-faint); }
+.wui-stat--warn { border-left: 4px solid var(--wui-amber); }
+
+/* ── Tabel (header navy gradien seperti grid Mutasi) ─────────────────── */
+.wui-table-wrap { background: var(--wui-surface); border: 1px solid var(--wui-border); border-radius: var(--wui-radius-lg); box-shadow: var(--wui-shadow); overflow: auto; }
+.wui-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 11.5px; }
+.wui-table thead th {
+  position: sticky; top: 0; z-index: 2;
+  background: linear-gradient(180deg, var(--wui-navy-1) 0%, var(--wui-navy-2) 100%);
+  color: #fff; text-align: left; padding: 9px 12px; white-space: nowrap;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  border-right: 1px solid rgba(255, 255, 255, .08);
+}
+.wui-table tbody td { padding: 8px 12px; border-bottom: 1px solid var(--wui-row-line); color: var(--wui-cell); vertical-align: top; }
+.wui-table tbody tr:nth-child(even) td { background: var(--wui-row-alt); }
+.wui-table tbody tr:hover td { background: var(--wui-row-hover); }
+.wui-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.wui-table .nowrap { white-space: nowrap; }
+.wui-table-empty { text-align: center !important; padding: 28px !important; color: var(--wui-faint) !important; background: var(--wui-surface) !important; }
+.wui-row--new td { animation: wui-new 4s ease-out; }
+@keyframes wui-new { 0%, 30% { background: var(--wui-new-row); } 100% { background: transparent; } }
+
+.wui-mono { font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-size: 11px; }
+.wui-hint { font-size: 11px; font-weight: 500; color: var(--wui-faint); }
+.wui-pager { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+
+/* ── Modal ────────────────────────────────────────────────────────────── */
+.wui-overlay { position: fixed; inset: 0; z-index: 99990; background: rgba(15, 23, 42, .45); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.wui-modal { background: var(--wui-surface); color: var(--wui-text); border-radius: 14px; box-shadow: var(--wui-shadow-modal); width: 760px; max-width: 100%; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
+.wui-modal__head { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--wui-row-line); font-size: 13px; }
+.wui-modal__body { padding: 14px 16px; overflow: auto; }
+
+/* ── Mode gelap: tint chip & tombol Live ─────────────────────────────── */
+.dark .wui-chip--blue   { background: rgba(59, 130, 246, .16); color: #93c5fd; border-color: rgba(59, 130, 246, .35); }
+.dark .wui-chip--violet { background: rgba(139, 92, 246, .16); color: #c4b5fd; border-color: rgba(139, 92, 246, .35); }
+.dark .wui-chip--green  { background: rgba(16, 185, 129, .14); color: #6ee7b7; border-color: rgba(16, 185, 129, .35); }
+.dark .wui-chip--amber  { background: rgba(245, 158, 11, .14); color: #fcd34d; border-color: rgba(245, 158, 11, .35); }
+.dark .wui-chip--red    { background: rgba(239, 68, 68, .14); color: #fca5a5; border-color: rgba(239, 68, 68, .35); }
+.dark .wui-live--on { color: #6ee7b7; border-color: rgba(16, 185, 129, .4); background: rgba(16, 185, 129, .12); }
+.dark .wui-live--on:hover:not(:disabled) { background: rgba(16, 185, 129, .2); border-color: rgba(16, 185, 129, .6); }
+.dark .wui-table thead th { border-right-color: rgba(255, 255, 255, .06); }
+.dark .wui-overlay { background: rgba(2, 6, 23, .65); }
+
+@media (max-width: 1024px) {
+  .wui-header { flex-wrap: wrap; }
+  .wui-body { padding: 10px 12px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wui-live--on .wui-live__dot, .wui-row--new td { animation: none; }
+}
